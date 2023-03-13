@@ -25,7 +25,7 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Enter Passenger Details"
+                android:text="Enter User Details"
                 android:textColor="#fff"
                 android:layout_marginTop="20dp"
                 android:textSize="30dp"
@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPersonName"
-                    android:hint="Train Name" />
+                    android:hint="Activity Name" />
 
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:inputType="number"
                     android:layout_height="match_parent"
-                    android:hint="Train Number" />
+                    android:hint="Activity Number" />
 
             </android.support.design.widget.TextInputLayout>
             <LinearLayout
@@ -122,7 +122,7 @@
                         android:id="@+id/from_id"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="From Station"
+                        android:hint="Street"
                         android:inputType="textPersonName" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -136,7 +136,7 @@
                         android:id="@+id/to_id"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="To Station"
+                        android:hint="PostCode"
                         android:inputType="textPersonName" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -163,7 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:hint="Aadhaar No." />
+                    android:hint="Emergency No." />
 
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout

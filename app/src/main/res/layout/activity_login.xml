@@ -14,7 +14,8 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:elevation="150dp"
-        android:src="@drawable/icon_final_round"
+        android:src="@drawable/qrcode"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -27,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Smart Railway QR"
+        android:text="Team 17 Event"
         android:textColor="#000"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"

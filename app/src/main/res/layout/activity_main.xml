@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Smart Railway QR"
+        android:text="Team 17 Event"
         android:textColor="#000"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"

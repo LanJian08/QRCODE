@@ -59,7 +59,7 @@ public class QRCode extends AppCompatActivity {
     /*FirebaseDatabase database=FirebaseDatabase.getInstance();
     DatabaseReference reference= database.getReference("passengers");*/
 
-    //RequestQueue mRequestQueue;
+    RequestQueue mRequestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,68 +100,68 @@ public class QRCode extends AppCompatActivity {
 
 
 
-//        mRequestQueue= Volley.newRequestQueue(this);
-//
-//        //Toast.makeText(this, input, Toast.LENGTH_LONG).show();
-//
-//        final ProgressDialog pd = new ProgressDialog(QRCode.this);
-//        pd.setMessage("Please Wait...");
-//        pd.setCanceledOnTouchOutside(false);
-//        pd.show();
-//
-//        /*String cName=reference.push().getKey();
-//        reference.child(cName).setValue(mPassenger);*/
-//
-//        StringRequest serverRq=new StringRequest(Request.Method.POST, "http://15.207.50.169/setdata.php", new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-//                Display display = windowManager.getDefaultDisplay();
-//                Point point = new Point();
-//                display.getSize(point);
-//                int width = point.x;
-//                int height = point.y;
-//                int smallerdimen = width < height ? width : height;
-//                smallerdimen = smallerdimen * 3 / 4;
-//                mQRGEncoder = new QRGEncoder(input, null, QRGContents.Type.TEXT, smallerdimen);
-//
-//                try {
-//                    mBitmap = mQRGEncoder.encodeAsBitmap();
-//                    qrimg.setImageBitmap(mBitmap);
-//                } catch (WriterException e) {
-//                    Log.v(TAG, e.toString());
-//                }
-//                pd.dismiss();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//            }
-//        })
-//        {
-//            @Override
-//            public Map<String, String> getParams() throws AuthFailureError {
-//
-//                Map<String,String> data=new HashMap<>();
-//
-//                data.put("pnr",mPassenger.getPnr());
-//                data.put("name",mPassenger.getName());
-//                data.put("trainname",mPassenger.getTrainname());
-//                data.put("trainno",mPassenger.getTrainno());
-//                data.put("state",mPassenger.getState());
-//                data.put("city",mPassenger.getCity());
-//                data.put("source",mPassenger.getSource());
-//                data.put("destination",mPassenger.getDestination());
-//                data.put("date",mPassenger.getDate());
-//                data.put("aadhaar",mPassenger.getAadhaar());
-//                data.put("mobile",mPassenger.getMobile());
-//
-//                return data;
-//            }
-//        };
-//
-//        mRequestQueue.add(serverRq);
+        mRequestQueue= Volley.newRequestQueue(this);
+
+        //Toast.makeText(this, input, Toast.LENGTH_LONG).show();
+
+        final ProgressDialog pd = new ProgressDialog(QRCode.this);
+        pd.setMessage("Please Wait...");
+        pd.setCanceledOnTouchOutside(false);
+        pd.show();
+
+        /*String cName=reference.push().getKey();
+        reference.child(cName).setValue(mPassenger);*/
+
+        StringRequest serverRq=new StringRequest(Request.Method.POST, "http://15.207.50.169/setdata.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+                Display display = windowManager.getDefaultDisplay();
+                Point point = new Point();
+                display.getSize(point);
+                int width = point.x;
+                int height = point.y;
+                int smallerdimen = width < height ? width : height;
+                smallerdimen = smallerdimen * 3 / 4;
+                mQRGEncoder = new QRGEncoder(input, null, QRGContents.Type.TEXT, smallerdimen);
+
+                try {
+                    mBitmap = mQRGEncoder.encodeAsBitmap();
+                    qrimg.setImageBitmap(mBitmap);
+                } catch (WriterException e) {
+                    Log.v(TAG, e.toString());
+                }
+                pd.dismiss();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> data=new HashMap<>();
+
+                data.put("pnr",mPassenger.getPnr());
+                data.put("name",mPassenger.getName());
+                data.put("trainname",mPassenger.getTrainname());
+                data.put("trainno",mPassenger.getTrainno());
+                data.put("state",mPassenger.getState());
+                data.put("city",mPassenger.getCity());
+                data.put("source",mPassenger.getSource());
+                data.put("destination",mPassenger.getDestination());
+                data.put("date",mPassenger.getDate());
+                data.put("aadhaar",mPassenger.getAadhaar());
+                data.put("mobile",mPassenger.getMobile());
+
+                return data;
+            }
+        };
+
+        mRequestQueue.add(serverRq);
 
 
         save.setOnClickListener(new View.OnClickListener() {

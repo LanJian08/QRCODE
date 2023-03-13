@@ -17,15 +17,16 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <activity android:name=".Verify_Fingerprint" android:configChanges="orientation|screenSize|keyboardHidden"/>-->
-<!--        <activity android:name=".Login" />-->
+       <activity android:name=".Verify_Fingerprint" android:configChanges="orientation|screenSize|keyboardHidden"/>
+
         <activity android:name=".QRCode" />
-<!--        <activity android:name=".ScanFingerprint" android:configChanges="orientation|screenSize|keyboardHidden" />-->
+       <activity android:name=".ScanFingerprint" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".ScanQR" />
         <activity android:name=".GenerateQR" />
-        <activity android:name=".Home" />
-<!--        <activity android:name=".Bluetooth" />-->
-        <activity android:name=".MainActivity">
+         <activity android:name=".Home" />
+        <activity android:name=".Bluetooth" />
+        <activity android:name=".MainActivity"/>
+            <activity android:name=".Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

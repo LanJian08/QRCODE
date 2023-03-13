@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_login);
@@ -99,7 +99,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
 
-                Log.w(TAG, "Google sign in failed", e);
+                Intent i = new Intent(Login.this, Home.class);
+                startActivity(i);
+                finish();
 
             }
         }
@@ -124,6 +126,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Snackbar.make(findViewById(R.id.constraintLayout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                             updateUI(null);
+                            System.out.println("fail");
                         }
 
                         // ...
@@ -132,7 +135,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void updateUI(FirebaseUser d){
-        if(d!=null) {
+        if(d !=null) {
             Intent i = new Intent(Login.this, Home.class);
             startActivity(i);
             finish();
