@@ -314,7 +314,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
             }
         });
         if(lastPNR.equals(result.getText())){ //Hardcoded better read from file so store in local file after capturing the QR code
-            ab.setMessage("Passenger Verified");
+            ab.setMessage("User Verified");
         } else{
             ab.setMessage("Invalid Input");
         }
