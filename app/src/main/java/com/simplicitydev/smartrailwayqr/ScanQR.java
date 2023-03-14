@@ -87,6 +87,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
     ZXingScannerView mScannerView;
 
     ArrayList<String> f;
+    ArrayList<User> g;
     int flag=0,j;
 
     FirebaseDatabase database;
@@ -303,7 +304,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
         Log.d(TAG, "handleResult: result== $result "+result.getText());
 
 //        String lastPNR = getLatestGeneratedQRCodePNR();
-        final String IMAGE_PATH =  Environment.getExternalStorageDirectory().getPath() + "/SmartRailwayQR/Railway_Ticket.jpg";
+        final String IMAGE_PATH =  Environment.getExternalStorageDirectory().getPath() + "/QR/event.jpg";
         String lastPNR = decodeQRImagePNR(IMAGE_PATH);
         Home.mTextView.setText(result.getText());
 
@@ -318,7 +319,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
             }
         });
         if(lastPNR.equals(result.getText())){ //Hardcoded better read from file so store in local file after capturing the QR code
-            ab.setMessage("Passenger Verified");
+            ab.setMessage("User Verified");
         } else{
             ab.setMessage("Invalid Input");
         }
@@ -422,12 +423,12 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
             }
         });
         mRequestQueue.add(serverRq);
-/*        reference.addValueEventListener(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot d:dataSnapshot.getChildren()){
-                    User p=d.getValue(Passenger.class);
-                    f.add(p);
+                    User p=d.getValue(User.class);
+                    g.add(p);
                 }
 
                 if(Home.mTextView.getText().toString().length()!=10)
@@ -437,7 +438,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
 
                 else {
                     for (j = 0; j < f.size(); j++) {
-                        String b = f.get(j).getPnr();
+                        String b = g.get(j).getPnr();
                         if (b.equals(Home.mTextView.getText().toString())) {
                             flag = 1;
                             break;
@@ -482,7 +483,7 @@ public class ScanQR extends AppCompatActivity implements ZXingScannerView.Result
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(ScanQR.this, ""+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
     }
 
