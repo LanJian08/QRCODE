@@ -2,9 +2,9 @@ package com.simplicitydev.smartrailwayqr;
 
 import java.io.Serializable;
 
-public class Passenger implements Serializable {
+public class User implements Serializable {
 
-    String pnr,name,trainname,trainno,state,city,source,destination,date,aadhaar,mobile;
+    String pnr,name,activityname,activityno,state,city,street,postcode,date,emergency,mobile;
 
     public String getPnr() {
         return pnr;
@@ -22,20 +22,20 @@ public class Passenger implements Serializable {
         this.name = name;
     }
 
-    public String getTrainname() {
-        return trainname;
+    public String getActivityname() {
+        return activityname;
     }
 
-    public void setTrainname(String trainname) {
-        this.trainname = trainname;
+    public void setActivityname(String activityname) {
+        this.activityname = activityname;
     }
 
-    public String getTrainno() {
-        return trainno;
+    public String getActivityno() {
+        return activityno;
     }
 
-    public void setTrainno(String trainno) {
-        this.trainno = trainno;
+    public void setActivityno(String activityno) {
+        this.activityno = activityno;
     }
 
     public String getState() {
@@ -54,20 +54,20 @@ public class Passenger implements Serializable {
         this.city = city;
     }
 
-    public String getSource() {
-        return source;
+    public String getStreet() {
+        return street;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public String getDestination() {
-        return destination;
+    public String getPostCode() {
+        return postcode;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setPostCode(String postcode) {
+        this.postcode = postcode;
     }
 
     public String getDate() {
@@ -78,12 +78,12 @@ public class Passenger implements Serializable {
         this.date = date;
     }
 
-    public String getAadhaar() {
-        return aadhaar;
+    public String getEmergencey() {
+        return emergency;
     }
 
-    public void setAadhaar(String aadhaar) {
-        this.aadhaar = aadhaar;
+    public void setEmergency(String emergency) {
+        this.emergency = emergency;
     }
 
     public String getMobile() {

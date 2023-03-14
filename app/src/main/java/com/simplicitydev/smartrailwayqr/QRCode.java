@@ -45,7 +45,7 @@ import androidmads.library.qrgenearator.QRGSaver;
 
 public class QRCode extends AppCompatActivity {
 
-    private static final String IMAGE_DIRECTORY =  Environment.getExternalStorageDirectory().getPath() + "/SmartRailwayQR/";
+    private static final String IMAGE_DIRECTORY =  Environment.getExternalStorageDirectory().getPath() + "/EventQR/";
 
     String TAG = "GenerateQrCode";
 
@@ -56,8 +56,8 @@ public class QRCode extends AppCompatActivity {
 
     Button mm, exit,save;
 
-    /*FirebaseDatabase database=FirebaseDatabase.getInstance();
-    DatabaseReference reference= database.getReference("passengers");*/
+    FirebaseDatabase database=FirebaseDatabase.getInstance();
+    DatabaseReference reference= database.getReference("users");
 
     RequestQueue mRequestQueue;
 
@@ -70,13 +70,13 @@ public class QRCode extends AppCompatActivity {
 
         setContentView(R.layout.activity_qrcode);
 
-        final Passenger mPassenger = (Passenger) getIntent().getSerializableExtra("passenger");
-        final String input = mPassenger.getPnr();
+        final User mUser = (User) getIntent().getSerializableExtra("user");
+        final String input = mUser.getPnr();
 
         qrimg = findViewById(R.id.qr);
         mm = findViewById(R.id.main_menu);
         exit = findViewById(R.id.close);
-        save=findViewById(R.id.save_img);
+        save = findViewById(R.id.save_img);
 
 
         storeLatestQRCodePNR(input);
@@ -98,24 +98,25 @@ public class QRCode extends AppCompatActivity {
             Log.v(TAG, e.toString());
         }
 
+        mRequestQueue = Volley.newRequestQueue(this);
 
-
-        mRequestQueue= Volley.newRequestQueue(this);
-
-        //Toast.makeText(this, input, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, input, Toast.LENGTH_LONG).show();
 
         final ProgressDialog pd = new ProgressDialog(QRCode.this);
         pd.setMessage("Please Wait...");
         pd.setCanceledOnTouchOutside(false);
-        pd.show();
+      //  pd.show();
 
-        /*String cName=reference.push().getKey();
-        reference.child(cName).setValue(mPassenger);*/
+        String cName = reference.push().getKey();
+        reference.child(cName).setValue(mUser);
 
-        StringRequest serverRq=new StringRequest(Request.Method.POST, "http://15.207.50.169/setdata.php", new Response.Listener<String>() {
+
+        StringRequest serverRq = new StringRequest(Request.Method.POST, "http://16.171.10.192", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+
+                System.out.println("kaishi21");
                 Display display = windowManager.getDefaultDisplay();
                 Point point = new Point();
                 display.getSize(point);
@@ -138,24 +139,22 @@ public class QRCode extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        })
-        {
-            @Override
+        }) {
             public Map<String, String> getParams() throws AuthFailureError {
 
-                Map<String,String> data=new HashMap<>();
+                Map<String, String> data = new HashMap<>();
 
-                data.put("pnr",mPassenger.getPnr());
-                data.put("name",mPassenger.getName());
-                data.put("trainname",mPassenger.getTrainname());
-                data.put("trainno",mPassenger.getTrainno());
-                data.put("state",mPassenger.getState());
-                data.put("city",mPassenger.getCity());
-                data.put("source",mPassenger.getSource());
-                data.put("destination",mPassenger.getDestination());
-                data.put("date",mPassenger.getDate());
-                data.put("aadhaar",mPassenger.getAadhaar());
-                data.put("mobile",mPassenger.getMobile());
+                data.put("pnr", mUser.getPnr());
+                data.put("name", mUser.getName());
+                data.put("activityname", mUser.getActivityname());
+                data.put("activityno", mUser.getActivityname());
+                data.put("state", mUser.getState());
+                data.put("city", mUser.getCity());
+                data.put("street", mUser.getStreet());
+                data.put("postcode", mUser.getPostCode());
+                data.put("date", mUser.getDate());
+                data.put("emergency", mUser.getEmergencey());
+                data.put("mobile", mUser.getMobile());
 
                 return data;
             }
@@ -169,7 +168,7 @@ public class QRCode extends AppCompatActivity {
             public void onClick(View view) {
                 try{
 //                    QRGSaver.save(IMAGE_DIRECTORY,input.trim(),mBitmap,QRGContents.ImageType.IMAGE_JPEG);
-                    QRGSaver.save(IMAGE_DIRECTORY,"Railway_Ticket",mBitmap,QRGContents.ImageType.IMAGE_JPEG);
+                    QRGSaver.save(IMAGE_DIRECTORY,"Team 17 Event",mBitmap,QRGContents.ImageType.IMAGE_JPEG);
                 }
 
                 catch (Exception e){

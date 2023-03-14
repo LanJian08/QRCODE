@@ -19,10 +19,10 @@ import java.util.Random;
 
 public class GenerateQR extends AppCompatActivity {
 
-    EditText name_o_p,tr_name,tr_no,st,ct,sr,dest,doj,adh_no,mob_no;
+    EditText name_o_p,ac_name,ac_no,sta,ct,str,post,doj,adh_no,mob_no;
     int d,m,y;
 
-    String name,trainname,trainno,state,city,source,destination,date,aadhaar,mobile;
+    String name,activityname,activityno,state,city,street,postcode,date,emergency,mobile;
     Button sc_fg;
 
 
@@ -41,14 +41,14 @@ public class GenerateQR extends AppCompatActivity {
 
 
         name_o_p=findViewById(R.id.name);
-        tr_name=findViewById(R.id.train_name);
-        tr_no=findViewById(R.id.train_no);
-        st=findViewById(R.id.st_name);
+        ac_name=findViewById(R.id.activity_name);
+        ac_no=findViewById(R.id.activity_no);
+        sta=findViewById(R.id.st_name);
         ct=findViewById(R.id.city_name);
-        sr=findViewById(R.id.from_id);
-        dest=findViewById(R.id.to_id);
+        str=findViewById(R.id.street);
+        post=findViewById(R.id.postcode);
         doj=findViewById(R.id.journey_date);
-        adh_no=findViewById(R.id.aadhaar);
+        adh_no=findViewById(R.id.emergency);
         mob_no=findViewById(R.id.mobile);
 
         Calendar calendar=Calendar.getInstance();
@@ -67,44 +67,46 @@ public class GenerateQR extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 name=name_o_p.getText().toString();
-                trainname=tr_name.getText().toString();
-                trainno=tr_no.getText().toString();
-                state=st.getText().toString();
+                activityname=ac_name.getText().toString();
+                activityno=ac_no.getText().toString();
+                state=sta.getText().toString();
                 city=ct.getText().toString();
-                source=sr.getText().toString();
-                destination=dest.getText().toString();
+                street=str.getText().toString();
+                postcode=post.getText().toString();
                 date=doj.getText().toString();
-                aadhaar=adh_no.getText().toString();
+                emergency=adh_no.getText().toString();
                 mobile=mob_no.getText().toString();
 
-                if(name.isEmpty()||trainname.isEmpty()||trainno.isEmpty()||state.isEmpty()||city.isEmpty()
-                        ||source.isEmpty()||destination.isEmpty()||date.isEmpty()||aadhaar.isEmpty()||mobile.isEmpty()){
+                if(name.isEmpty()||activityname.isEmpty()||activityno.isEmpty()||state.isEmpty()||city.isEmpty()
+                        ||street.isEmpty()||postcode.isEmpty()||date.isEmpty()||emergency.isEmpty()||mobile.isEmpty()){
                     Toast.makeText(GenerateQR.this, "Please fill all the Details!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Passenger passenger = new Passenger();
+                    User user = new User();
 
                     int random = new Random().nextInt(100000000) + 999999999;
                     String pnr = String.valueOf(random).trim();
-                    passenger.setPnr(pnr);
-                    passenger.setName(name);
-                    passenger.setTrainname(trainname);
-                    passenger.setTrainno(trainno);
-                    passenger.setState(state);
-                    passenger.setCity(city);
-                    passenger.setSource(source);
-                    passenger.setDestination(destination);
-                    passenger.setDate(date);
-                    passenger.setAadhaar(aadhaar);
-                    passenger.setMobile(mobile);
+                    user.setPnr(pnr);
+                    user.setName(name);
+                    user.setActivityname(activityname);
+                    user.setActivityno(activityno);
+                    user.setState(state);
+                    user.setCity(city);
+                    user.setStreet(street);
+                    user.setPostCode(postcode);
+                    user.setDate(date);
+                    user.setEmergency(emergency);
+                    user.setMobile(mobile);
 
 
-//                    Intent i = new Intent(GenerateQR.this, ScanFingerprint.class);
-//                    i.putExtra("passenger", passenger);
-//                    startActivity(i);
+//                    Intent g = new Intent(GenerateQR.this, ScanFingerprint.class);
+//                    g.putExtra("user", user);
+//                    startActivity(g);
 //                    finish();
+
                     Intent i = new Intent(GenerateQR.this, QRCode.class);
-                    i.putExtra("passenger", passenger);
+
+                    i.putExtra("user", user);
                     startActivity(i);
                     finish();
                 }

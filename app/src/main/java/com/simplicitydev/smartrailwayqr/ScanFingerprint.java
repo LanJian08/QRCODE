@@ -51,14 +51,14 @@ public class ScanFingerprint extends Activity implements MFS100Event {
 
     private boolean isCaptureRunning = false;
 
-    Passenger mPassenger;
+    User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_fingerprint);
 
-        mPassenger = (Passenger) getIntent().getSerializableExtra("passenger");
+        mUser = (User) getIntent().getSerializableExtra("passenger");
 
         FindFormControls();
         try {
@@ -146,7 +146,7 @@ public class ScanFingerprint extends Activity implements MFS100Event {
                     break;
                 case R.id.genqr:
                     Intent i = new Intent(ScanFingerprint.this, QRCode.class);
-                    i.putExtra("passenger", mPassenger);
+                    i.putExtra("passenger", mUser);
                     startActivity(i);
                     finish();
                     break;
@@ -357,9 +357,9 @@ public class ScanFingerprint extends Activity implements MFS100Event {
         }
 
         try {
-            WriteFile(mPassenger.getPnr()+".raw", fingerData.RawData());
-            WriteFile(mPassenger.getPnr()+".bmp", fingerData.FingerImage());
-            WriteFile(mPassenger.getPnr()+".iso", fingerData.ISOTemplate());
+            WriteFile(mUser.getPnr()+".raw", fingerData.RawData());
+            WriteFile(mUser.getPnr()+".bmp", fingerData.FingerImage());
+            WriteFile(mUser.getPnr()+".iso", fingerData.ISOTemplate());
         } catch (Exception e) {
             e.printStackTrace();
         }
